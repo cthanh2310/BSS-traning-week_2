@@ -169,7 +169,7 @@ function addDevice() {
     data.createdDate = getCurrentTime();
     data.powerConsumption = Number(data.powerConsumption);
     data.id = Date.now();
-    dataDashboard.push(data);
+    dataDashboard = [data, ...dataDashboard];
     localStorage.setItem('dataDashboard', JSON.stringify(dataDashboard));
     renderTable(dataDashboard);
     renderChart(dataDashboard);
