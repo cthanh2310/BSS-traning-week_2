@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./resources/css/base.css">
+  <link rel="stylesheet" href="./resources/css/reset.css">
+  <link rel="stylesheet" href="./resources/css/app.css">
+  <link rel="stylesheet" href="./resources/css/dashboard.css">
+  <link rel="stylesheet" href="./resources/css/logs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <title>Training Thanh-PC</title>
+</head>
+
+<body>
+  <div class="dashboard">
+
+    <div class="navigation">
+      <ul class="navigation__list">
+        <li class="navigation__list-item">
+          <a href="#" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-ethernet"></i></span>
+            <span class="navigation__list-item-title">
+              Device Manager
+            </span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/dashboard.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-network-wired"></i></span>
+            <span class="navigation__list-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/logs.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+            <span class="navigation__list-item-title active-navigation">Logs</span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/settings.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-gear"></i></span>
+            <span class="navigation__list-item-title">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="header">
+        <div class="header__info">
+          <i class="fa-solid fa-circle-user"></i>
+          <span class="header__info--name">Welcome John</span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content__header">
+          <div class="content__title">
+            <h1>Action Logs</h1>
+          </div>
+          <div class="search">
+            <input type="text" class="search__input" id="search-action" placeholder="Tìm kiếm">
+            <button class="search__button" id="search-action-btn" onClick="handleSearch()">
+              <i class="search__icon fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="content__table content__table--search">
+          <table class="statistic-table">
+            <thead class="statistic-thead">
+              <tr class="statistic-tr--modifier">
+                <td class="statistic-td">Device ID</td>
+                <td class="statistic-td">Name</td>
+                <td class="statistic-td">Action</td>
+                <td class="statistic-td">Date</td>
+              </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+          </table>
+        </div>
+        <div class="content__pagination">
+          
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="resources/js/logs.js"></script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./resources/css/base.css">
+  <link rel="stylesheet" href="./resources/css/reset.css">
+  <link rel="stylesheet" href="./resources/css/app.css">
+  <link rel="stylesheet" href="./resources/css/login.css">
+  <link rel="stylesheet" href="./resources/css/toast.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <title>Training Thanh-PC</title>
+</head>
+<body>
+    <div class="container">
+      <div id="toasts"></div>
+      <div class="login">
+        <div class="login__title">
+          <h1 class="login__title-content">
+            SOIOT SYSTEM
+          </h1>
+        </div>
+        <div class="login__form">
+          <form action="file:///home/bss/Desktop/thanhpc-training-w2/dashboard.html" id="loginForm" class="form-container">
+            <div class="form-group">
+              <input class="form-control" type="text" id="username" placeholder="username">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="password" id="password" placeholder="password">
+            </div>
+            <div class="form-group">
+              <div class="login__form-auth">
+                <button class="btn btn-login" onClick="login()">LOGIN</button>
+                <a href="#" class="btn-register">or create new account</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+<script src="./resources/js/login.js"></script>
+</html>

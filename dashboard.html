@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./resources/css/base.css">
+  <link rel="stylesheet" href="./resources/css/reset.css">
+  <link rel="stylesheet" href="./resources/css/app.css">
+  <link rel="stylesheet" href="./resources/css/dashboard.css">
+  <link rel="stylesheet" href="./resources/css/responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <title>Training Thanh-PC</title>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="nav__top-mobile hide-on-tablet-pc">
+      <label for="nav-mobile-input" class="nav__bars-btn">
+        <i class="nav__top-mobile-icon fas fa-bars"></i>
+      </label>
+    </div>
+    <input type="checkbox" hidden class="nav__input" id="nav-mobile-input">
+    
+    <label for="nav-mobile-input" class="nav__overlay"></label>
+    <nav class="nav__mobile hide-on-tablet-pc">
+    
+      <ul class="nav__mobile-list">
+        <li class="nav__mobile-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/dashboard.html" class="nav__link nav__mobile-link" style="color: #2582f0">Dashboard<i class="fa-solid fa-network-wired"
+              style="margin-left: 5px; color: #6b6868;"></i></a>
+        </li>
+        <li class="nav__mobile-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/logs.html" class="nav__link nav__mobile-link">Logs<i class="fa-solid fa-clock-rotate-left"
+              style="margin-left: 5px; color: #6b6868;"></i></a>
+        </li>
+        <li class="nav__mobile-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/settings.html" class="nav__link nav__mobile-link">Setting<i class="fa-solid fa-gear"
+              style="margin-left: 5px; color: #6b6868;"></i></a>
+        </li>
+        <label for="nav-mobile-input" class="nav__mobile-close--text">
+          Thoát
+        </label>
+      </ul>
+    </nav>
+
+    <div class="navigation hide-on-mobile">
+      <ul class="navigation__list">
+        <li class="navigation__list-item">
+          <a href="#" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-ethernet"></i></span>
+            <span class="navigation__list-item-title">
+              Device Manager
+            </span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/dashboard.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-network-wired"></i></span>
+            <span class="navigation__list-item-title active-navigation">Dashboard</span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/logs.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+            <span class="navigation__list-item-title">Logs</span>
+          </a>
+        </li>
+        <li class="navigation__list-item">
+          <a href="file:///home/bss/Desktop/thanhpc-training-w2/settings.html" class="navigation__list-item-link">
+            <span class="navigation__list-item-icon"><i class="fa-solid fa-gear"></i></span>
+            <span class="navigation__list-item-title">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="header hide-on-mobile">
+        <div class="header__info">
+          <i class="fa-solid fa-circle-user"></i>
+          <span class="header__info--name">Welcome John</span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content__table hide-on-mobile">
+          <table class="statistic-table">
+            <thead class="statistic-thead">
+              <tr class="statistic-tr--modifier">
+                <td class="statistic-td">Devices</td>
+                <td class="statistic-td">MAC Address</td>
+                <td class="statistic-td">IP</td>
+                <td class="statistic-td">Created Date</td>
+                <td class="statistic-td">Power Consumption (Kw/H)</td>
+                <td class="statistic-td">Thao tac</td>
+              </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+          </table>
+        </div>
+        <div class="content__chart">
+          <div class="content__chart--image">
+            <div class="content__chart--image-child">
+              <canvas id="dataChart"></canvas>
+            </div>
+          </div>
+          <div class="content__chart--form">
+            <div class="content__chart--form-child">
+              <div class="device__form">
+                <div id="deviceForm" class="form-container">
+                  <div class="form-group">
+                    <input class="form-control device__form--input" type="text" id="name" placeholder="name">
+                  </div>
+                  <span class="device__form--error device__form--error-name">Trường này là bắt buộc!</span>
+                  <div class="form-group">
+                    <input class="form-control device__form--input" id="macAddress" placeholder="MAC Address	">
+                  </div>
+                  <span class="device__form--error device__form--error-macAddress">Trường này là bắt buộc!</span>
+                  <div class="form-group">
+                    <input class="form-control device__form--input" id="ip" placeholder="IP">
+                  </div>
+                  <span class="device__form--error device__form--error-ip">Trường này là bắt buộc!</span>
+                  <div class="form-group">
+                    <input class="form-control device__form--input" id="powerConsumption" placeholder="Power Consumption (Kw/H)">
+                  </div>
+                  <span class="device__form--error device__form--error-powerConsumption">Trường này là bắt buộc!</span>
+                  <div class="form-group">
+                    <div class="device__form--auth">
+                      <button class="btn btn-device" onClick="addDevice()">ADD DEVICE</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+  <div class="overlay"></div>
+  <div class="popup">
+    <h3 class="popup__tile">Bạn chắc chắn?</h3>
+    <p class="popup__description">Bạn muốn xóa dịch vụ này</p>
+    <div class="pop__up--button">
+      <a class="pop__up--button-exit" onClick="exitModal()">Thoát</a>
+      <button class="pop__up--button-ok" onClick="confirmDeleteService()">Đồng ý</button>
+    </form>
+    </div>
+  </div>
+  <div class="editModal hide">
+    <div class="editModal__inner">
+      <div class="editModal__header">
+        <p>Sửa thông tin dịch vụ</p>
+        <i onClick="closeEditModal()" class="fas fa-times"></i>
+      </div>
+      <div class="editModal__body">
+        <form action="#" class="form-container">
+          <div class="form-group">
+            <input class="form-control editDevice__form--input" type="text" id="editName" placeholder="name">
+          </div>
+          <span class="editDevice__form--error editDevice__form--error-editName">Trường này là bắt buộc!</span>
+          <div class="form-group">
+            <input class="form-control editDevice__form--input" id="editMacAddress" placeholder="MAC Address	">
+          </div>
+          <span class="editDevice__form--error editDevice__form--error-editMacAddress">Trường này là bắt buộc!</span>
+          <div class="form-group">
+            <input class="form-control editDevice__form--input" id="editIp" placeholder="IP">
+          </div>
+          <span class="editDevice__form--error editDevice__form--error-editIp">Trường này là bắt buộc!</span>
+          <div class="form-group">
+            <input class="form-control editDevice__form--input" id="editPowerConsumption" placeholder="Power Consumption (Kw/H)">
+          </div>
+          <span class="editDevice__form--error editDevice__form--error-editPowerConsumption">Trường này là bắt buộc!</span>
+        </form>
+      </div>
+      <div class="editModal__footer">
+        <button class="editModal__footer--save" onClick="confirmEditModal()">Lưu thay đổi</button>
+        <button class="editModal__footer--exit" onClick="closeEditModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="resources/js/dashboard.js"></script>
