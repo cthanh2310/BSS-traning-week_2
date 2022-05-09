@@ -1,0 +1,95 @@
+.contentTableSearch {
+	overflow-y: initial !important;
+	max-height: max-content;
+	margin-top: 0;
+}
+
+/* Search */
+.search {
+	margin-left: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 35%;
+	display: flex;
+	background-color: #efebeb;
+	border-radius: 10px;
+	overflow: hidden;
+	align-items: center;
+	height: 30px;
+	margin-bottom: 40px;
+	justify-content: space-around;
+}
+
+.searchInput {
+	padding-left: 10px;
+	background-color: #efebeb;
+	width: 100%;
+	outline: none;
+	border: none;
+	font-size: 1.4rem;
+}
+
+.searchButton {
+	background-color: var(--orange-color);
+	justify-content: center;
+	border: none;
+	border-radius: 20px;
+	width: 60px;
+	height: 80%;
+}
+
+.searchButton:hover {
+	background-color: #f5af76;
+	cursor: pointer;
+}
+
+.searchIcon {
+	align-items: center;
+	font-size: 1.4rem;
+}
+
+/* pagination */
+.contentPagination {
+	width: 100%;
+	justify-content: center;
+	margin: 24px 0;
+	display: flex;
+}
+
+.pageItem {
+	list-style: none;
+	color: black;
+	float: left;
+	font-size: 1.4rem;
+	text-decoration: none;
+	transition: all 0.5s;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 40px;
+	height: 30px;
+}
+.pageLink {
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	line-height: 29px;
+}
+.pageItem:not(:first-child) .pageLink {
+	margin-left: -1px;
+}
+.pageLink :hover {
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+	z-index: 2;
+}
+
+.pageItemActive {
+	background-color: var(--blue-color);
+	color: white;
+	border: 1px solid var(--blue-color);
+}
+
+.contentPagination div:hover:not(.active) {
+	background-color: #ddd;
+}

@@ -1,0 +1,87 @@
+/* overlay */
+.overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 68;
+	animation: fadeIn 0.2s linear;
+	/* display: none; */
+}
+
+.overlay:active .popup {
+	border: 1px solid #000;
+}
+
+@keyframes show {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.popup {
+	z-index: 69;
+	width: 300px;
+	position: fixed;
+	top: 25%;
+	right: 50%;
+	transform: translateX(50%);
+	background-color: white;
+	border-radius: 5px;
+	animation: show 0.2s linear;
+	/* display: none; */
+}
+
+.popupTile {
+	text-align: center;
+	font-size: 1.7rem;
+}
+
+.popupDescription {
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.popupButton {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 20px;
+}
+
+.popupButtonExit {
+	background-color: #fff;
+	color: #106fff;
+	border: none;
+	font-size: 1.4rem;
+	cursor: pointer;
+	margin: auto 10px;
+}
+
+.popupButtonExit:hover {
+	font-weight: 600;
+}
+
+.popupButtonOk {
+	background-color: #ffb18e;
+	justify-content: center;
+	border: none;
+	border-radius: 3px;
+	width: 100px;
+	height: 30px;
+	color: var(--black-color);
+	font-size: 1.4rem;
+	transition: all linear 0.3s;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.popupButtonOk:hover {
+	background-color: var(--orange-color);
+	color: #ffffee;
+	cursor: pointer;
+}

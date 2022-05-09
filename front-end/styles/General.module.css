@@ -1,0 +1,208 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--grey-1-color);
+}
+/* form */
+.form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  margin: 16px 0;
+  width: 80%;
+  font-size: 1.6rem;
+}
+
+.form-control {
+  background-color: var(--input-color);
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border: 0px solid;
+  padding-left: 8px;
+}
+/* button */
+.btn {
+  background-color: var(--orange-color);
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  color: var(--black-color);
+  font-size: 1.4rem;
+  transition: all linear 0.3s;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+/* overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 68;
+  animation: fadeIn 0.2s linear;
+  display: none;
+}
+
+.overlay:active .popup {
+  border: 1px solid #000;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.popup {
+  z-index: 69;
+  width: 300px;
+  position: fixed;
+  top: 25%;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: white;
+  border-radius: 5px;
+  animation: show 0.2s linear;
+  display: none;
+}
+
+.popup__tile {
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.popup__description {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.pop__up--button {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.pop__up--button-exit {
+  background-color: #fff;
+  color: #106fff;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin: auto 10px;
+}
+
+.pop__up--button-exit:hover {
+  font-weight: 600;
+}
+
+.pop__up--button-ok {
+  background-color: #ffb18e;
+  justify-content: center;
+  border: none;
+  border-radius: 3px;
+  width: 100px;
+  height: 30px;
+  color: var(--black-color);
+  font-size: 1.4rem;
+  transition: all linear 0.3s;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.pop__up--button-ok:hover {
+  background-color: var(--orange-color);
+  color: #ffffee;
+  cursor: pointer;
+}
+
+/* edit modal */
+.editModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hide {
+  display: none;
+}
+
+.editModal__inner {
+  width: 450px;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  animation: show linear 0.2s;
+  position: relative;
+  margin: 200px auto;
+}
+
+.editModal__header {
+  background-color: var(--blue-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 25px;
+  font-size: 17px;
+}
+
+.editModal__body {
+  padding: 15px;
+}
+
+.editModal__body h2 {
+  color: var(--orange-color);
+  margin-bottom: 10px;
+}
+
+.editModal__footer {
+  padding: 15px;
+  text-align: right;
+}
+
+.editModal__footer button {
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  color: var(--white-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.editModal__footer button:hover {
+  opacity: 0.8;
+}
+.editModal__footer--save {
+  background-color: var(--blue-color);
+}
+.editModal__footer--exit {
+  background-color: var(--red-color);
+}
+
+.i {
+  cursor: pointer;
+  font-size: 18px;
+}

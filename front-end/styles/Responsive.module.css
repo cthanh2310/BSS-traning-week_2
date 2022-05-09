@@ -1,0 +1,90 @@
+@media (min-width: 740px) {
+  .hide-on-tablet-pc {
+    display: none;
+  }
+}
+@media (max-width: 739px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  .main {
+    position: initial;
+    width: 100%;
+  }
+  .content {
+    width: 80%;
+    height: 80%;
+    padding: 40px 0;
+  }
+  .content__chart--image,
+  .content__chart--form {
+    width: 100%;
+    max-width: initial;
+    flex: initial;
+  }
+
+  /* navigation */
+  .nav__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 68;
+    display: none;
+    animation: fadeIn 0.2s linear;
+  }
+  .nav__bars-btn {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+  }
+
+  .nav__mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 69;
+    width: 140px;
+    max-width: 100%;
+    background-color: var(--white-color);
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform linear 0.3s;
+  }
+
+  .nav__mobile-list {
+    padding-left: 20px;
+    margin-top: 24px;
+    list-style: none;
+  }
+
+  .nav__mobile-link {
+    color: var(--black-color);
+    line-height: 14px;
+    display: block;
+    padding: 8px 0;
+    font-size: 1.4rem;
+    width: 80%;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .nav__input:checked ~ .nav__overlay {
+    display: block;
+  }
+
+  .nav__input:checked ~ .nav__mobile {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .nav__mobile-close--text {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-top: 10px;
+    display: block;
+  }
+}

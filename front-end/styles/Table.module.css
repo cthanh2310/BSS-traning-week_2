@@ -1,0 +1,80 @@
+/* table */
+.contentTable {
+	background-color: var(--white-color);
+	margin: 50px 0;
+	max-height: 255px;
+	overflow-y: scroll;
+}
+
+.contentTableSearch {
+	overflow-y: initial !important;
+	max-height: max-content;
+	margin-top: 0;
+}
+
+.statisticTable {
+	width: 100%;
+	border-radius: 6px;
+	border-collapse: collapse;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	font-size: 1.4rem;
+	background: var(--white-color);
+}
+
+.statisticThead {
+	border-bottom: 3px solid var(--grey-1-color);
+}
+
+.statisticTr,
+.statisticTrModifier {
+	border-bottom: 1px solid #eee;
+}
+
+.statisticTr:hover {
+	background-color: #81c1dd;
+}
+
+.statisticTd,
+.statisticTr td {
+	padding: 10px;
+}
+
+.statisticTr td:last-child,
+.statisticTd:last-child {
+	text-align: center;
+	padding-right: 20px;
+}
+
+.statisticTd,
+.statisticTr td {
+	padding: 10px;
+}
+
+.statisticTr td:nth-child(2),
+.statisticTd:nth-child(2) {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.statisticTd,
+.statisticTr td {
+	padding: 10px;
+}
+
+.statisticTr td:nth-child(3),
+.statisticTd:nth-child(3) {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.statisticTr td:nth-child(4),
+.statisticTd:nth-child(4) {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.statisticTr td:nth-child(5),
+.statisticTd:nth-child(5) {
+	text-align: center;
+	padding-right: 20px;
+}
