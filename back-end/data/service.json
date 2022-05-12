@@ -1,0 +1,26 @@
+[
+  {
+    "id": 3,
+    "name": "Refrigerator",
+    "macAddress": "00:18:44:11:3A:B9",
+    "ip": "127.0.0.4",
+    "createdDate": "31-05-2021",
+    "powerConsumption": 80
+  },
+  {
+    "id": 4,
+    "name": "Selling Fan",
+    "macAddress": "00:18:44:11:3A:B2",
+    "ip": "127.0.0.5",
+    "createdDate": "31-05-2021",
+    "powerConsumption": 100
+  },
+  {
+    "id": 1111,
+    "name": "TVV",
+    "macAddress": "00:18:44:11:3A:B7222",
+    "ip": "127.0.0.22",
+    "createdDate": "31-05-2021",
+    "powerConsumption": 503
+  }
+]

@@ -1,6 +1,6 @@
 const KoaRouter = require('koa-router');
 const router = new KoaRouter();
-const { login } = require('../controllers/authController');
+const { getAllLogs } = require('../controllers/logController');
 
-router.post('/login', login);
+router.get('/logs', getAllLogs);
 module.exports = { router };
