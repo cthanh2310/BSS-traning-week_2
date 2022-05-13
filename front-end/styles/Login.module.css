@@ -1,53 +1,60 @@
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	min-height: 100vh;
+	padding: 4rem 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .login {
-  background-color: var(--white-color);
-  width: 40%;
-  height: 35%;
-  box-shadow: 1px 2px 5px rgba(163, 131, 131, 0.3);
-  display: flex;
-  flex-direction: column;
+	background-color: var(--white-color);
+	width: 40%;
+	height: 35%;
+	box-shadow: 1px 2px 5px rgba(163, 131, 131, 0.3);
+	display: flex;
+	flex-direction: column;
 }
 .loginTitle {
-  display: flex;
-  justify-content: center;
-  padding: 12px 0;
-  margin-bottom: 8px;
+	display: flex;
+	justify-content: center;
+	padding: 12px 0;
+	margin-bottom: 8px;
 }
 .loginTitleContent {
-  font-weight: 700;
-  color: var(--text-grey-color);
+	font-weight: 700;
+	color: var(--text-grey-color);
 }
 .loginFormAuth {
-  display: flex;
-  margin: 0 16px;
-  justify-content: space-evenly;
+	display: flex;
+	margin: 0 16px;
+	justify-content: space-evenly;
+}
+.loginFormError {
+	font-size: 1.4rem;
+	color: red;
+	font-weight: 700;
+	margin-right: auto;
+	margin-left: 77px;
 }
 .btnLogin {
-  color: var(--white-color);
-  font-weight: bolder;
-  padding: 16px;
-  line-height: 2px;
-  transition: all linear 0.3s;
+	color: var(--white-color);
+	font-weight: bolder;
+	padding: 16px;
+	line-height: 2px;
+	transition: all linear 0.3s;
 }
 .btnLogin:hover {
-  background-color: #e66022;
+	background-color: #e66022;
 }
 .btnRegister {
-  text-decoration: none;
-  color: var(--blue-color);
-  font-weight: 700;
-  text-align: center;
-  line-height: 30px;
-  font-size: 1.6rem;
+	text-decoration: none;
+	color: var(--blue-color);
+	font-weight: 700;
+	text-align: center;
+	line-height: 30px;
+	font-size: 1.6rem;
 }
 .btnRegister:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }

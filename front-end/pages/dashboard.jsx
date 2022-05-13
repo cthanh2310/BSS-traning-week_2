@@ -318,7 +318,6 @@ export default function Dashboard(props) {
 	);
 }
 export async function getServerSideProps(context) {
-	//if user doesn't has auth cookie redirect
 	console.log('cookie', context.req.cookies);
 	if (context.req.cookies.token !== 'john-token-123/231-454564') {
 		return {
