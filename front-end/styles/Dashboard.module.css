@@ -71,3 +71,22 @@
 .btnDevice:hover {
 	background-color: #e66022;
 }
+
+@media only screen and (max-width: 768px) {
+	.contentChartForm,
+	.contentChartImage {
+		width: 100%;
+		flex: initial;
+		max-width: 100%;
+	}
+	.deviceForm {
+		margin-top: 48px;
+		padding-top: 0px;
+	}
+	.deviceFormError {
+		margin-left: 30px;
+	}
+	.contentChartFormChild {
+		height: initial;
+	}
+}

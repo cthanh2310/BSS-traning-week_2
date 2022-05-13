@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import styles from '../styles/Dashboard.module.css';
 import tableStyles from '../styles/Table.module.css';
 import renderColor from '../utils/renderColor';
@@ -8,14 +8,18 @@ import Header from '../components/Header';
 import DeleteModal from '../components/DeleteModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
+import {
+	faCircleXmark,
+	faPencil,
+	faBars,
+} from '@fortawesome/free-solid-svg-icons';
 import EditModal from '../components/EditModal';
 import { validate } from '../utils/validator';
 import { getCurrentTime } from '../utils/getCurrentTime';
+import { useService } from '../hooks/useService';
 
 export default function Dashboard(props) {
-	const { response } = props;
-	const [dataTable, setDataTable] = useState(response.data);
+	const { services, reFetchServices } = useService();
 	const [idDelete, setIdDelete] = useState(null);
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 	const [isOpenEditModal, setIsOpenEditModal] = useState(false);
@@ -31,13 +35,10 @@ export default function Dashboard(props) {
 
 	const handleChange = (event) => {
 		event.persist();
-		console.log({ ...values, [event.target.name]: event.target.value });
 		setValues({ ...values, [event.target.name]: event.target.value });
 	};
 	const handleAddDevice = async () => {
 		const errors = validate(values);
-		console.log('errors', errors);
-		console.log('values', values);
 		if (Object.keys(errors).length === 0) {
 			const service = {
 				...values,
@@ -59,7 +60,7 @@ export default function Dashboard(props) {
 						return data;
 					});
 				if (response.statusCode === 201) {
-					setDataTable(response.data);
+					reFetchServices();
 				}
 			} catch (error) {
 				console.log('error', error);
@@ -86,20 +87,19 @@ export default function Dashboard(props) {
 					return data;
 				});
 			if (response.statusCode === 201) {
-				setDataTable(response.data);
+				reFetchServices();
 			}
 			handleCloseDeleteModal();
 		} catch (error) {
 			console.log('error', error);
 		}
 	};
-
+	const color = useMemo(() => renderColor(services), [services]);
 	// Resolve edit actions
 	const handleCloseEditModal = () => {
 		setIsOpenEditModal(false);
 	};
 	const handleConfirmEditModal = useCallback(async (newDataRow) => {
-		console.log('newDataRow', newDataRow);
 		try {
 			const response = await fetch('http://localhost:5500/dashboard/update', {
 				method: 'PUT',
@@ -115,7 +115,7 @@ export default function Dashboard(props) {
 					return data;
 				});
 			if (response.statusCode === 201) {
-				setDataTable(response.data);
+				reFetchServices();
 			}
 			handleCloseEditModal();
 		} catch (error) {
@@ -124,7 +124,7 @@ export default function Dashboard(props) {
 	}, []);
 
 	const handleEditRow = (id) => {
-		const dataDetail = dataTable.find((value) => value.id === id);
+		const dataDetail = services.find((value) => value.id === id);
 		setDataEditTable(dataDetail);
 		setIsOpenEditModal(true);
 	};
@@ -137,61 +137,6 @@ export default function Dashboard(props) {
 	return (
 		<div className="container">
 			<div className="dashboard">
-				<div className="nav__top-mobile hide-on-tablet-pc">
-					<label htmlFor="nav-mobile-input" className="nav__bars-btn">
-						<i className="nav__top-mobile-icon fas fa-bars"></i>
-					</label>
-				</div>
-				<input
-					type="checkbox"
-					hidden
-					className="nav__input"
-					name="nav-mobile-input"
-				/>
-
-				<label htmlFor="nav-mobile-input" className="nav__overlay"></label>
-				<nav className="nav__mobile hide-on-tablet-pc">
-					<ul className="nav__mobile-list">
-						<li className="nav__mobile-item">
-							<a
-								href="./dashboard.html"
-								className="nav__link nav__mobile-link"
-								style={{ color: '#2582f0' }}
-							>
-								Dashboard
-								<i
-									className="fa-solid fa-network-wired"
-									style={{ color: '#6b6868', marginLeft: '5px' }}
-								></i>
-							</a>
-						</li>
-						<li className="nav__mobile-item">
-							<a href="./logs.html" className="nav__link nav__mobile-link">
-								Logs
-								<i
-									className="fa-solid fa-clock-rotate-left"
-									style={{ color: '#6b6868', marginLeft: '5px' }}
-								></i>
-							</a>
-						</li>
-						<li className="nav__mobile-item">
-							<a href="./settings.html" className="nav__link nav__mobile-link">
-								Setting
-								<i
-									className="fa-solid fa-gear"
-									style={{ color: '#6b6868', marginLeft: '5px' }}
-								></i>
-							</a>
-						</li>
-						<label
-							htmlFor="nav-mobile-input"
-							className="nav__mobile-close--text"
-						>
-							Thoát
-						</label>
-					</ul>
-				</nav>
-
 				<Sidebar />
 				<Header />
 				{isOpenDeleteModal && (
@@ -225,7 +170,7 @@ export default function Dashboard(props) {
 									</tr>
 								</thead>
 								<tbody name="dataBody">
-									{dataTable.map((value) => {
+									{services.map((value) => {
 										return (
 											<tr className={tableStyles.statisticTr} key={value.id}>
 												<td>{value.name}</td>
@@ -268,13 +213,11 @@ export default function Dashboard(props) {
 								<div className={styles.contentChartImageChild}>
 									<DoughnutChart
 										data={{
-											labels: dataTable.map((value) => value.name),
+											labels: services.map((value) => value.name),
 											datasets: [
 												{
-													data: dataTable.map(
-														(value) => value.powerConsumption
-													),
-													backgroundColor: renderColor(dataTable),
+													data: services.map((value) => value.powerConsumption),
+													backgroundColor: color,
 													borderColor: ['#F5F5F5'],
 													borderWidth: 1,
 													hoverOffset: 4,
@@ -374,20 +317,18 @@ export default function Dashboard(props) {
 		</div>
 	);
 }
-
 export async function getServerSideProps(context) {
-	const res = await fetch(`http://localhost:5500/dashboard/`);
-	const response = await res.json();
-	console.log('context', context);
-	if (!res.json()) {
+	//if user doesn't has auth cookie redirect
+	console.log('cookie', context.req.cookies);
+	if (context.req.cookies.token !== 'john-token-123/231-454564') {
 		return {
-			notFound: true,
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
 		};
 	}
-
 	return {
-		props: {
-			response,
-		}, // will be passed to the page component as props
+		props: context.req.cookies,
 	};
 }

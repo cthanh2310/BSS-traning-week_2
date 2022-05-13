@@ -41,9 +41,6 @@ export default function EditModal(props) {
 								onChange={(e) => handleChangeName(e)}
 							/>
 						</div>
-						{/* <span className="editDevice__form--error editDevice__form--error-editName">
-							Trường này là bắt buộc!
-						</span> */}
 						<div className="form-group">
 							<input
 								className="form-control editDevice__form--input"
@@ -52,9 +49,6 @@ export default function EditModal(props) {
 								onChange={(e) => handleChangeMACAddress(e)}
 							/>
 						</div>
-						{/* <span className="editDevice__form--error editDevice__form--error-editMacAddress">
-							Trường này là bắt buộc!
-						</span> */}
 						<div className="form-group">
 							<input
 								className="form-control editDevice__form--input"
@@ -63,9 +57,6 @@ export default function EditModal(props) {
 								onChange={(e) => handleChangeIp(e)}
 							/>
 						</div>
-						{/* <span className="editDevice__form--error editDevice__form--error-editIp">
-							Trường này là bắt buộc!
-						</span> */}
 						<div className="form-group">
 							<input
 								className="form-control editDevice__form--input"
@@ -74,9 +65,6 @@ export default function EditModal(props) {
 								onChange={(e) => handleChangePowerConsumption(e)}
 							/>
 						</div>
-						{/* <span className="editDevice__form--error editDevice__form--error-editPowerConsumption">
-							Trường này là bắt buộc!
-						</span> */}
 					</form>
 				</div>
 				<div className="editModal__footer">

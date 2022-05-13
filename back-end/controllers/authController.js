@@ -11,7 +11,10 @@ exports.login = async (ctx, next) => {
         users[i].username === body.username &&
         users[i].password === body.password
       ) {
-        console.log('ok');
+        ctx.cookies.set('token', `${body.username}-token-123/231-454564`, {
+          httpOnly: true,
+        });
+        console.log(ctx.cookies.token);
         return (ctx.body = {
           token: `${body.username}-token-123/231-454564`,
         });

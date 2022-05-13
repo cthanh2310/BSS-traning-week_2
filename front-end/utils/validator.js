@@ -4,19 +4,19 @@ export const validate = (values) => {
 	const errors = {};
 
 	if (name.length === 0) {
-		errors.name = 'Vui lòng nhâp trường này!';
+		errors.name = 'this field is required!';
 	}
 	if (macAddress.length === 0) {
-		errors.macAddress = 'Vui lòng nhâp trường này!';
+		errors.macAddress = 'this field is required!';
 	}
 	if (ip.length === 0) {
-		errors.ip = 'Vui lòng nhâp trường này!';
+		errors.ip = 'this field is required!';
 	}
 	if (powerConsumption.length === 0) {
-		errors.powerConsumption = 'Vui lòng nhâp trường này!';
+		errors.powerConsumption = 'this field is required!';
 	} else {
 		if (!!!powerConsumption.match(regexNumber)) {
-			errors.powerConsumption = 'Trường này yêu cầu nhập số!';
+			errors.powerConsumption = 'This field requires a number!';
 		}
 	}
 	return errors;

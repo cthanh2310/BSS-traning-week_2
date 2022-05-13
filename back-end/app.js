@@ -11,6 +11,18 @@ app.use(parser());
 app.use(logger());
 const router = require('./routes/index');
 
+const validOrigins = [`http://localhost:3000`, '*'];
+
+function verifyOrigin(ctx) {
+  const origin = ctx.headers.origin;
+  if (!originIsValid(origin)) return false;
+  return origin;
+}
+
+function originIsValid(origin) {
+  return validOrigins.indexOf(origin) != -1;
+}
+
 const fs = require('fs');
 if (!fs.existsSync('data/service.json')) {
   CreateData.createService();
@@ -22,7 +34,14 @@ if (!fs.existsSync('data/log.json')) {
   CreateData.createLog();
 }
 // Simple Middleware Example
-app.use(cors());
+const config = {
+  cors: {
+    origin: verifyOrigin,
+    credentials: true,
+  },
+};
+
+app.use(cors(config.cors));
 
 app.use(router());
 
