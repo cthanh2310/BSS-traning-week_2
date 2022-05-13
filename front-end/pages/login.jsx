@@ -7,14 +7,32 @@ import { useRouter } from 'next/router';
 export default function Login() {
 	const router = useRouter();
 	const [account, setAccount] = useState({});
-	const [errorLogin, setErrorLogin] = useState(false);
-	const handleLogin = () => {
-		if (account.username === 'john' && account.password === '1234') {
-			return router.push({
-				pathname: '/dashboard',
-			});
+	const handleLogin = async () => {
+		try {
+			console.log(account);
+			const response = await fetch('http://localhost:5500/login', {
+				method: 'POST',
+				body: JSON.stringify(account),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(function (response) {
+					return response.json();
+				})
+				.then(function (data) {
+					return data;
+				});
+			if (response.token) {
+				return router.push({
+					pathname: '/dashboard',
+				});
+			} else {
+				return toast.error('Đăng nhập thất bại, có lỗi xảy ra!');
+			}
+		} catch (error) {
+			console.log('error', error);
 		}
-		return toast.error('Đăng nhập thất bại, có lỗi xảy ra!');
 	};
 	const handleChangeUsername = (e) => {
 		setAccount((prevAccount) => {

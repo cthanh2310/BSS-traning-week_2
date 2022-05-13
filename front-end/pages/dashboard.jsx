@@ -13,43 +13,9 @@ import EditModal from '../components/EditModal';
 import { validate } from '../utils/validator';
 import { getCurrentTime } from '../utils/getCurrentTime';
 
-export default function Dashboard() {
-	const didMount = useRef(false);
-
-	const [dataTable, setDataTable] = useState([
-		{
-			id: 1,
-			name: 'TV',
-			macAddress: '00:18:44:11:3A:B7',
-			ip: '127.0.0.2',
-			createdDate: '31-05-2021',
-			powerConsumption: 50,
-		},
-		{
-			id: 2,
-			name: 'Washer',
-			macAddress: '00:18:44:11:3A:B8',
-			ip: '127.0.0.3',
-			createdDate: '31-05-2021',
-			powerConsumption: 60,
-		},
-		{
-			id: 3,
-			name: 'Refrigerator',
-			macAddress: '00:18:44:11:3A:B9',
-			ip: '127.0.0.4',
-			createdDate: '31-05-2021',
-			powerConsumption: 80,
-		},
-		{
-			id: 4,
-			name: 'Selling Fan',
-			macAddress: '00:18:44:11:3A:B2',
-			ip: '127.0.0.5',
-			createdDate: '31-05-2021',
-			powerConsumption: 100,
-		},
-	]);
+export default function Dashboard(props) {
+	const { response } = props;
+	const [dataTable, setDataTable] = useState(response.data);
 	const [idDelete, setIdDelete] = useState(null);
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 	const [isOpenEditModal, setIsOpenEditModal] = useState(false);
@@ -63,23 +29,41 @@ export default function Dashboard() {
 	});
 	const [errors, setErrors] = useState({});
 
-	const handleChange = useCallback((event) => {
+	const handleChange = (event) => {
 		event.persist();
-		console.log('{ ...values, [event.target.name]: event.target.value }', {
-			...values,
-			[event.target.name]: event.target.value,
-		});
+		console.log({ ...values, [event.target.name]: event.target.value });
 		setValues({ ...values, [event.target.name]: event.target.value });
-	}, []);
-	const handleAddDevice = () => {
+	};
+	const handleAddDevice = async () => {
 		const errors = validate(values);
+		console.log('errors', errors);
+		console.log('values', values);
 		if (Object.keys(errors).length === 0) {
-			setDataTable((prev) => {
-				return [
-					...prev,
-					{ ...values, id: Date.now(), createdDate: getCurrentTime() },
-				];
-			});
+			const service = {
+				...values,
+				id: Date.now(),
+				createdDate: getCurrentTime(),
+			};
+			try {
+				const response = await fetch('http://localhost:5500/dashboard/create', {
+					method: 'POST',
+					body: JSON.stringify(service),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})
+					.then(function (response) {
+						return response.json();
+					})
+					.then(function (data) {
+						return data;
+					});
+				if (response.statusCode === 201) {
+					setDataTable(response.data);
+				}
+			} catch (error) {
+				console.log('error', error);
+			}
 		}
 		return setErrors(validate(values));
 	};
@@ -87,24 +71,56 @@ export default function Dashboard() {
 	const handleCloseDeleteModal = () => {
 		setIsOpenDeleteModal(false);
 	};
-	const handleConfirmDeleteModal = () => {
-		const newDataTable = dataTable.filter(function (value) {
-			return value.id !== idDelete;
-		});
-		setDataTable(newDataTable);
-		handleCloseDeleteModal();
+	const handleConfirmDeleteModal = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:5500/dashboard/${idDelete}`,
+				{
+					method: 'DELETE',
+				}
+			)
+				.then(function (response) {
+					return response.json();
+				})
+				.then(function (data) {
+					return data;
+				});
+			if (response.statusCode === 201) {
+				setDataTable(response.data);
+			}
+			handleCloseDeleteModal();
+		} catch (error) {
+			console.log('error', error);
+		}
 	};
 
 	// Resolve edit actions
 	const handleCloseEditModal = () => {
 		setIsOpenEditModal(false);
 	};
-	const handleConfirmEditModal = useCallback((newDataRow) => {
-		const newDataTable = dataTable.map((value) =>
-			value.id === newDataRow.id ? { ...value, ...newDataRow } : value
-		);
-		setDataTable(newDataTable);
-		handleCloseEditModal();
+	const handleConfirmEditModal = useCallback(async (newDataRow) => {
+		console.log('newDataRow', newDataRow);
+		try {
+			const response = await fetch('http://localhost:5500/dashboard/update', {
+				method: 'PUT',
+				body: JSON.stringify(newDataRow),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(function (response) {
+					return response.json();
+				})
+				.then(function (data) {
+					return data;
+				});
+			if (response.statusCode === 201) {
+				setDataTable(response.data);
+			}
+			handleCloseEditModal();
+		} catch (error) {
+			console.log('error', error);
+		}
 	}, []);
 
 	const handleEditRow = (id) => {
@@ -357,4 +373,21 @@ export default function Dashboard() {
 			</div>
 		</div>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const res = await fetch(`http://localhost:5500/dashboard/`);
+	const response = await res.json();
+	console.log('context', context);
+	if (!res.json()) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return {
+		props: {
+			response,
+		}, // will be passed to the page component as props
+	};
 }

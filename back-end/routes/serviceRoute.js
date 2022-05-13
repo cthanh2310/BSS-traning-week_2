@@ -1,5 +1,5 @@
 const KoaRouter = require('koa-router');
-const router = new KoaRouter();
+const serviceRouter = new KoaRouter();
 const {
   getAllServices,
   createService,
@@ -7,8 +7,8 @@ const {
   updateService,
 } = require('../controllers/serviceController');
 
-router.get('/dashboard', getAllServices);
-router.post('/dashboard/create', createService);
-router.delete('/dashboard/:id', deleteService);
-router.put('/dashboard/update', updateService);
-module.exports = { router };
+serviceRouter.get('/dashboard', getAllServices);
+serviceRouter.post('/dashboard/create', createService);
+serviceRouter.delete('/dashboard/:id', deleteService);
+serviceRouter.put('/dashboard/update', updateService);
+module.exports = serviceRouter;
