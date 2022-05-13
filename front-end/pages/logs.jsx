@@ -104,6 +104,16 @@ export default function Logs(props) {
 												</tr>
 											);
 										})}
+									<tr className={tableStyles.statisticTr}>
+										<td>
+											<b>Total: </b>
+										</td>
+										<td></td>
+										<td></td>
+										<td>
+											<b>{dataTable.length}</b>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

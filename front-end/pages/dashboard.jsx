@@ -16,6 +16,7 @@ import {
 import EditModal from '../components/EditModal';
 import { validate } from '../utils/validator';
 import { getCurrentTime } from '../utils/getCurrentTime';
+import { getTotalPowerConsumption } from '../utils/getTotalPowerConsumption';
 import { useService } from '../hooks/useService';
 
 export default function Dashboard(props) {
@@ -220,6 +221,17 @@ export default function Dashboard(props) {
 											</tr>
 										);
 									})}
+									<tr className={tableStyles.statisticTr}>
+										<td>
+											<b>Total</b>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style={{ color: 'green' }}>
+											<b>{getTotalPowerConsumption(services)}</b>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
