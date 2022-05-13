@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useState, useMemo, useRef, useEffect } from 'react';
 import styles from '../styles/Dashboard.module.css';
 import tableStyles from '../styles/Table.module.css';
 import renderColor from '../utils/renderColor';
@@ -9,9 +9,9 @@ import DeleteModal from '../components/DeleteModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+	faBars,
 	faCircleXmark,
 	faPencil,
-	faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import EditModal from '../components/EditModal';
 import { validate } from '../utils/validator';
@@ -20,6 +20,7 @@ import { getTotalPowerConsumption } from '../utils/getTotalPowerConsumption';
 import { useService } from '../hooks/useService';
 
 export default function Dashboard(props) {
+	const isShowSidebar = useRef();
 	const { services, reFetchServices } = useService();
 	const [idDelete, setIdDelete] = useState(null);
 	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -150,10 +151,27 @@ export default function Dashboard(props) {
 		setIsOpenDeleteModal(true);
 	};
 
+	const handleShowSidebarMobile = (e) => {
+		const mediaQuery = window.matchMedia('(max-width: 768px)');
+		if (mediaQuery.matches) {
+			isShowSidebar.current.style.width = '150px';
+		}
+	};
 	return (
 		<div className="container">
 			<div className="dashboard">
-				<Sidebar />
+				<Sidebar ref={isShowSidebar} />
+				<div onClick={(e) => handleShowSidebarMobile(e)}>
+					<FontAwesomeIcon
+						icon={faBars}
+						style={{
+							height: '20px',
+							position: 'absolute',
+							top: '10px',
+							left: '10px',
+						}}
+					/>
+				</div>
 				<Header />
 				{isOpenDeleteModal && (
 					<DeleteModal
@@ -349,7 +367,6 @@ export default function Dashboard(props) {
 	);
 }
 export async function getServerSideProps(context) {
-	console.log('cookie', context.req.cookies);
 	if (context.req.cookies.token !== 'john-token-123/231-454564') {
 		return {
 			redirect: {

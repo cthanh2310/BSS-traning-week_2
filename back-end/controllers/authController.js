@@ -3,7 +3,6 @@ const fs = require('fs');
 exports.login = async (ctx, next) => {
   try {
     const body = ctx.request.body;
-    console.log('body', body);
     const users = JSON.parse(fs.readFileSync('data/account.json'));
 
     for (let i = 0; i < users.length; i++) {
@@ -14,7 +13,6 @@ exports.login = async (ctx, next) => {
         ctx.cookies.set('token', `${body.username}-token-123/231-454564`, {
           httpOnly: true,
         });
-        console.log(ctx.cookies.token);
         return (ctx.body = {
           token: `${body.username}-token-123/231-454564`,
         });

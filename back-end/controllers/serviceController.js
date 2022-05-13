@@ -3,7 +3,6 @@ const fs = require('fs');
 exports.getAllServices = async (ctx, next) => {
   try {
     const body = ctx.request.body;
-    console.log('body', body);
     const services = JSON.parse(fs.readFileSync('data/service.json'));
 
     return (ctx.body = {

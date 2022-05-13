@@ -1,14 +1,15 @@
 import styles from '../styles/Login.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useIsFirstMount } from '../hooks/useIsFirstMount';
 
 export default function Home() {
+	const isMount = useIsFirstMount();
 	const router = useRouter();
 	const [account, setAccount] = useState({});
 	const [errorLogin, setErrorLogin] = useState(false);
 	const handleLogin = async () => {
 		try {
-			console.log(account);
 			if (account.username && account.password) {
 				setErrorLogin(false);
 				const response = await fetch('http://localhost:5500/login', {
@@ -50,6 +51,14 @@ export default function Home() {
 		});
 	};
 
+	useEffect(() => {
+		if (!isMount) {
+			if (account.username && account.password) {
+				return setErrorLogin(false);
+			}
+			return setErrorLogin(true);
+		}
+	}, [account.username, account.password]);
 	return (
 		<div className="container">
 			<div className={styles.login}>

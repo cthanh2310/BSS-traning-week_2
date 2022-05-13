@@ -5,12 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faEthernet,
 	faNetworkWired,
+	faDeleteLeft,
 	faGear,
 	faClockRotateLeft,
 } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
-export default function Sidebar() {
+export default React.forwardRef(function Sidebar(props, ref) {
 	const [activeItemStr, setActiveItemStr] = useState();
+
+	const handleHideSidebar = () => {
+		const mediaQuery = window.matchMedia('(max-width: 768px)');
+		if (mediaQuery.matches) {
+			ref.current.style.width = 0;
+		}
+	};
 
 	useEffect(() => {
 		setActiveItemStr(
@@ -21,7 +30,7 @@ export default function Sidebar() {
 	}, []);
 
 	return (
-		<div className={`${styles.sidebar} hide-on-mobile`}>
+		<div ref={ref} className={`${styles.sidebar}`}>
 			<ul className={styles.sidebarList}>
 				<li className={styles.sidebarListItem}>
 					<Link href="/">
@@ -91,7 +100,18 @@ export default function Sidebar() {
 						</a>
 					</Link>
 				</li>
+				<li
+					className={`${styles.sidebarListItem} hide-on-tablet-pc`}
+					onClick={handleHideSidebar}
+				>
+					<a className={styles.sidebarListItemLink}>
+						<span className={styles.sidebarListItemIcon}>
+							<FontAwesomeIcon icon={faDeleteLeft} />
+						</span>
+						<span className={styles.sidebarListItemTitle}>Exit</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	);
-}
+});

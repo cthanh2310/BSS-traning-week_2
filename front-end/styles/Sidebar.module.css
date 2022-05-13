@@ -63,3 +63,19 @@
 	color: #338db5;
 	font-weight: 700;
 }
+
+@media only screen and (max-width: 768px) {
+	.sidebar {
+		transition: all 0.3s;
+		width: 0;
+	}
+
+	.sidebarListItem {
+		padding: 0;
+	}
+}
+@media only screen and (min-width: 768px) {
+	.sidebar {
+		width: 300px !important;
+	}
+}

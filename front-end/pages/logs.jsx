@@ -34,7 +34,7 @@ export default function Logs(props) {
 	const handleSearch = (e) => {
 		if (e.target.value !== '') {
 			let dataLogsSearched = [];
-			dataTable.forEach((data) => {
+			dataRoot.forEach((data) => {
 				if (data.name.toLowerCase().includes(e.target.value.toLowerCase())) {
 					dataLogsSearched.push(data);
 				}
@@ -141,10 +141,9 @@ export default function Logs(props) {
 		</div>
 	);
 }
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
 	const res = await fetch(`http://localhost:5500/logs/`);
 	const response = await res.json();
-	console.log('context', context);
 	if (!res.json()) {
 		return {
 			notFound: true,
