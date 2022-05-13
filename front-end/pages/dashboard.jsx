@@ -61,6 +61,12 @@ export default function Dashboard(props) {
 					});
 				if (response.statusCode === 201) {
 					reFetchServices();
+					setValues({
+						name: '',
+						macAddress: '',
+						ip: '',
+						powerConsumption: '',
+					});
 				}
 			} catch (error) {
 				console.log('error', error);
@@ -249,6 +255,7 @@ export default function Dashboard(props) {
 													type="text"
 													name="name"
 													placeholder="name"
+													value={values.name}
 													onChange={handleChange}
 												/>
 											</div>
@@ -261,6 +268,7 @@ export default function Dashboard(props) {
 												<input
 													className={`form-control ${styles.deviceFormInput}`}
 													name="macAddress"
+													value={values.macAddress}
 													placeholder="MAC Address	"
 													onChange={handleChange}
 												/>
@@ -274,6 +282,7 @@ export default function Dashboard(props) {
 												<input
 													className={`form-control ${styles.deviceFormInput}`}
 													name="ip"
+													value={values.ip}
 													placeholder="IP"
 													onChange={handleChange}
 												/>
@@ -286,6 +295,7 @@ export default function Dashboard(props) {
 											<div className="form-group">
 												<input
 													className={`form-control ${styles.deviceFormInput}`}
+													value={values.powerConsumption}
 													name="powerConsumption"
 													placeholder="Power Consumption (Kw/H)"
 													onChange={handleChange}
