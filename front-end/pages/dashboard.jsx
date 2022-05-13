@@ -36,6 +36,7 @@ export default function Dashboard(props) {
 	const handleChange = (event) => {
 		event.persist();
 		setValues({ ...values, [event.target.name]: event.target.value });
+		setErrors((prev) => ({ ...prev, [event.target.name]: '' }));
 	};
 	const handleAddDevice = async () => {
 		const errors = validate(values);
@@ -100,7 +101,15 @@ export default function Dashboard(props) {
 			console.log('error', error);
 		}
 	};
+
+	// Resolve data config to charts
+	const powerConsumptions = useMemo(
+		() => services.map((value) => value.powerConsumption),
+		[services]
+	);
+	const labels = useMemo(() => services.map((value) => value.name), [services]);
 	const color = useMemo(() => renderColor(services), [services]);
+
 	// Resolve edit actions
 	const handleCloseEditModal = () => {
 		setIsOpenEditModal(false);
@@ -219,10 +228,10 @@ export default function Dashboard(props) {
 								<div className={styles.contentChartImageChild}>
 									<DoughnutChart
 										data={{
-											labels: services.map((value) => value.name),
+											labels: labels,
 											datasets: [
 												{
-													data: services.map((value) => value.powerConsumption),
+													data: powerConsumptions,
 													backgroundColor: color,
 													borderColor: ['#F5F5F5'],
 													borderWidth: 1,
