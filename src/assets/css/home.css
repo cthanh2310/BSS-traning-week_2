@@ -1,0 +1,19 @@
+.Polaris-Button {
+  background: linear-gradient(
+    90deg,
+    rgb(237, 27, 35) 0%,
+    rgb(46, 48, 145) 52.08%,
+    rgb(37, 52, 148) 100%
+  );
+  color: #fff;
+  padding: 10px;
+}
+.Polaris-Button:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(237, 27, 35) 0%,
+    rgb(46, 48, 145) 52.08%,
+    rgb(37, 52, 148) 100%
+  );
+  color: #fff;
+}
